@@ -2,7 +2,7 @@ import telebot
 from telebot import types
 from main import *
 
-TOKEN = "1761664191:AAF2O_JDOnrv4D4uY9UT3Kflefo5jfEGS_g"
+TOKEN = ""
 bot = telebot.TeleBot(TOKEN)
 
 element = None
@@ -35,7 +35,7 @@ def send_graph(message):
     
     plotter = Plotter(eval(message.text), element())
     img = plotter.create_plot()
-    bot.send_photo(message.chat.id, open(element.symbol + message.text + ".png", 'rb'))
+    bot.send_photo(message.chat.id, open(element.symbol + str(eval(message.text)) + ".png", 'rb'))
 
  
 bot.polling()

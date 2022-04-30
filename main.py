@@ -41,7 +41,11 @@ class Plotter:
 
         fig, ax = plt.subplots()
 
-        plt.scatter(self.point, 1 / (2 ** (self.point / self.period)),
+        if self.point > self.period * len(self.y):
+            plt.scatter(self.point, 0,
+                    color='orange', s=40, marker='o')    
+        else:
+            plt.scatter(self.point, 1 / (2 ** (self.point / self.period)),
                     color='orange', s=40, marker='o')
 
         if self.element["dimension"] == "years":
@@ -56,7 +60,7 @@ class Plotter:
             plt.xlabel("t, часов")
         plt.ylabel("Доля атомов, N₀")
 
-        plt.xlim(self.x[0], self.x[-1])
+        plt.ylim(self.y[0], self.y[-1])
 
         plt.plot(self.x, self.y)
 
